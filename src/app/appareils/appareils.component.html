@@ -1,0 +1,54 @@
+<h3 class="ms-5 p-3 text-center">Appareils Management</h3>
+<div class="p-5">
+  <form class="form" name="registerForm" (ngSubmit) = "ngSubmit()" (ngSubmit)="onUpload()" novalidate enctype="multipart/form-data">
+    <input type="text" class="form-control w-50 " placeholder="Labelle"  [(ngModel)] = "appareils.labelle" name="labelle">
+    <input type="text" class="form-control w-50 mt-3" placeholder="Description" [(ngModel)] = "appareils.description" name="description">
+    <input type="number" min="0" max="1" class="form-control w-50 mt-3" placeholder="State" [(ngModel)] = "appareils.state" name="state">
+    <select class="form-select w-50 mt-3" [(ngModel)] = "appareils.categories" name="categories">
+      <option value="" disabled selected>Select a category</option>
+      <option *ngFor="let category of categorie" [value]="category.id">{{ category.id }} - {{category.labelle}}</option>
+    </select>
+    <input type="text" class="form-control mt-3 w-50" placeholder="url Image" name="img" [(ngModel)]="appareils.imageUrl">
+    <button type="submit" class="btn btn-outline-success mt-3">Add</button>
+
+  </form>
+  <button (click)="switchAllOn()" class="btn btn-success mt-3">Switch All On</button>
+    <button (click)="switchAllOff()"class="btn btn-danger mt-3 ms-3" >Switch All Off</button>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Labelle</th>
+      <th scope="col">Description</th>
+      <th scope="col">State</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let appareils of appareil">
+      <td>{{appareils.id}}</td>
+      <td>{{appareils.labelle}}</td>
+      <td>{{appareils.description}}</td>
+      <td>{{appareils.state}}</td>
+      <td>
+<button class="btn btn-outline-danger me-2" (click) = "deleteAppareil(appareils.id)">Delete</button>
+<button class="btn btn-outline-secondary" (click) = "updateAppareils(appareils.id)">Update</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container" style="display: flex; flex-wrap: nowrap; overflow-x: auto;">
+  <div class="card me-3" style="width: 18rem;" *ngFor = "let appareils of appareil">
+    <img class="card-img-top" src="{{appareils.imageUrl}}" alt="Card image cap">
+    <div class="card-body" [ngClass]="{'text-danger': appareils.state === false, 'text-success': appareils.state === true}">
+      <h5 class="card-title">{{appareils.labelle}}</h5>
+      <p class="card-text">{{appareils.description}}</p>
+      <p class="card-text">{{ (appareils.state || 0) === 0 ? 'Off' : 'On' }}</p>
+    </div>
+  </div>
+</div>
+<h1 class="mt-5"></h1>
+

@@ -1,0 +1,15 @@
+<h3 class="ms-5 p-3 text-center">Update Appareil</h3>
+<div class="p-5">
+  <form class="form" name="registerForm" (ngSubmit) = "onSubmit()">
+    <input type="text" class="form-control w-50 " placeholder="Labelle"  [(ngModel)] = "appareils.labelle" name="labelle">
+    <input type="text" class="form-control w-50 mt-3" placeholder="Description" [(ngModel)] = "appareils.description" name="description">
+    <input type="number" min="0" max="1" class="form-control w-50 mt-3" placeholder="State" [(ngModel)] = "appareils.state" name="state">
+    <select class="form-select w-50 mt-3" [(ngModel)] = "appareils.categories" name="categories">
+      <option value="" disabled selected>Select a category</option>
+      <option *ngFor="let category of categorie" [value]="category.id">{{ category.id }} - {{category.labelle}}</option>
+    </select>
+    <input type="text" class="form-control mt-3 w-50" placeholder="url Image" name="img" [(ngModel)]="appareils.imageUrl">
+    <button type="submit" class="btn btn-outline-secondary mt-3">Update</button>
+  </form>
+
+</div>

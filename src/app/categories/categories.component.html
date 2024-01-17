@@ -1,0 +1,28 @@
+<h3 class="ms-5 p-3 text-center">Categories Management</h3>
+<div class="p-5">
+  <form class="form" (ngSubmit) = "ngSubmit()">
+    <input type="text" class="form-control w-50 "
+     name="labelle" placeholder="Labelle" [(ngModel)] = "categories.labelle">
+     <button type="submit" class="btn btn-outline-success mt-3">Add</button>
+  </form>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Labelle</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor = "let categories of categorie">
+    <td>{{categories.id}}</td>
+    <td>{{categories.labelle}}</td>
+    <td>
+<button (click) = "deleteCategorie(categories.id)" class="btn btn-outline-danger me-2">Delete</button>
+<button  (click) = "updateCategorie(categories.id)" class="btn btn-outline-secondary">Update</button>
+    </td>
+  </tr>
+</table>
+
+
